@@ -12,7 +12,7 @@ const Home = () => {
     const { filteredUsers, setUsers, loading, apiRequestStart, apiRequestEnd, apiUsers, setApiUsers } = useContext(UserContext)
 
     useEffect(() => {
-      const url = 'https://user-db-server.up.railway.app/users'
+      const url = 'http://localhost:8000/users'
       if (apiUsers !== url && filteredUsers.length === 0) {
         apiRequestStart()
         axios.get(url)
