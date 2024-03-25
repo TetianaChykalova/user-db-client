@@ -1,0 +1,13 @@
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 0 0 1rem;
+    margin: 1rem 0 0 0;
+}
+.header {
+    text-transform: capitalize;
+}
+.text {
+    margin: 0.3rem 0 0 0;
+}

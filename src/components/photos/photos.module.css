@@ -1,0 +1,21 @@
+.photos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0 0 0;
+}
+.header {
+    text-transform: capitalize;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 320px;
+    width: 100%;
+}
+.image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+}

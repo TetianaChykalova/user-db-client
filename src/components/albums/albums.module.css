@@ -1,0 +1,23 @@
+.albums {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0 0 0;
+}
+.header {
+    text-transform: capitalize;
+}
+.album {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #125377;
+    flex: 0 0 25%;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    gap: 0.5rem;
+}
+.title {
+    text-transform: uppercase;
+    flex: 1 1 auto;
+}
