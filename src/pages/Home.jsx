@@ -12,7 +12,7 @@ const Home = () => {
     const { filteredUsers, setUsers, loading, apiRequestStart, apiRequestEnd, apiUsers, setApiUsers } = useContext(UserContext)
 
     useEffect(() => {
-      const url = 'http://localhost:8000/users'
+      const url = 'https://user-database-server.onrender.com'
       if (apiUsers !== url && filteredUsers.length === 0) {
         apiRequestStart()
         axios.get(url)

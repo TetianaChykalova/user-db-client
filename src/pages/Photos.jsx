@@ -43,7 +43,7 @@ const Photos = () => {
         // eslint-disable-next-line
       }, [userIdPath]);
 
-    const userName = users.find(user => +user.id === +userIdPath)?.name || ''
+    const userName = users ? users.find(user => +user.id === +userIdPath)?.name : ''
 
     return (<HelmetProvider>
       <Helmet>
