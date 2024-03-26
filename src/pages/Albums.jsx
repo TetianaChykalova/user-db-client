@@ -1,6 +1,6 @@
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useParams } from 'react-router-dom'
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../redux/context';
 import axios from 'axios';
 import AlbumsList from '../components/albums/AlbumsList';
@@ -8,26 +8,21 @@ import Loading from '../ui/Loading';
 
 const Albums = () => {
     const { userIdPath } = useParams();
-    const { users, setUsers, albums, setAlbums, loading, apiRequestStart, apiRequestEnd, apiAlbums, setApiAlbums } = useContext(UserContext)
+    const { users, setUsers } = useContext(UserContext)
+    const [albums, setAlbums] = useState([])
 
     useEffect(() => {
         const getAlbums = async () => {
           const url = `/users/${userIdPath}/albums`
-          if(apiAlbums !== url || albums.length === 0) {
-            apiRequestStart()
             try {
               const response = await axios.get(url);
               setAlbums(response.data);
             } catch (error) {
               console.log(error);
-              apiRequestEnd()
             }
-            setApiAlbums(url)
-          }
         };
     
         if (users.length === 0) {
-          apiRequestStart()
           axios.get('/users')
             .then(response => {
               setUsers(response.data);
@@ -35,7 +30,6 @@ const Albums = () => {
             })
             .catch(error => {
               console.log(error);
-              apiRequestEnd()
             });
         } else {
             getAlbums();
@@ -53,13 +47,9 @@ const Albums = () => {
       </Helmet>
       <div>
         {
-          loading 
-            ? <Loading /> 
-            : albums.length > 0
-              ? <AlbumsList albums={albums} user={userName} />
-              : (<>
-                <p>Data not found</p>
-            </>)
+          albums.length > 0
+            ? <AlbumsList albums={albums} user={userName} />
+            : <Loading />
         }
       </div>
     </HelmetProvider>)

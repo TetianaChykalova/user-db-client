@@ -1,33 +1,28 @@
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import PostsList from '../components/posts/PostsList'
 import { useParams } from 'react-router-dom'
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../redux/context';
 import axios from 'axios';
 import Loading from '../ui/Loading';
 
 const Posts = () => {
     const { userIdPath } = useParams();
-    const { users, setUsers, posts, setPosts, loading, apiRequestStart, apiRequestEnd, apiPosts, setApiPosts } = useContext(UserContext)
+    const { users, setUsers } = useContext(UserContext)
+    const [posts, setPosts] = useState([])
 
     useEffect(() => {
         const getPosts = async () => {
           const url = `/users/${userIdPath}/posts`
-          if(apiPosts !== url || posts.length === 0) {
-            apiRequestStart()
             try {
               const response = await axios.get(url);
               setPosts(response.data);
             } catch (error) {
-              apiRequestEnd()
               console.log(error);
             }
-            setApiPosts(url)
-          }
       };
   
       if (users.length === 0) {
-        apiRequestStart()
         axios.get('/users')
           .then(response => {
             setUsers(response.data);
@@ -35,7 +30,6 @@ const Posts = () => {
           })
           .catch(error => {
             console.log(error);
-            apiRequestEnd()
           });
       } else {
         getPosts();
@@ -53,11 +47,9 @@ const Posts = () => {
       </Helmet>
       <div>
         {
-          loading
-          ? <Loading />
-          : posts.length > 0 
+          posts.length > 0 
             ? <PostsList posts={posts} user={userName} />
-            : (<p>Data not found</p>)
+            : <Loading />
         }
       </div>
     </HelmetProvider>)

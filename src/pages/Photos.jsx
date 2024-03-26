@@ -1,6 +1,6 @@
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useParams } from 'react-router-dom'
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../redux/context';
 import axios from 'axios';
 import PhotosList from '../components/photos/PhotosList';
@@ -8,26 +8,21 @@ import Loading from '../ui/Loading';
 
 const Photos = () => {
     const { userIdPath, albumId } = useParams();
-    const { users, setUsers, photos, setPhotos, loading, apiRequestStart, apiRequestEnd, apiPhotos, setApiPhotos } = useContext(UserContext)
+    const { users, setUsers } = useContext(UserContext)
+    const [photos, setPhotos] = useState([])
 
     useEffect(() => {
         const getPhotos = async () => {
           const url = `/users/${userIdPath}/albums/${albumId}/photos`
-          if(apiPhotos !== url || photos.length === 0) {
-            apiRequestStart()
             try {
               const response = await axios.get(url);
               setPhotos(response.data);
             } catch (error) {
               console.log(error);
-              apiRequestEnd()
             }
-            setApiPhotos(url)
-          }
         };
     
         if (users.length === 0) {
-          apiRequestStart()
           axios.get('/users')
             .then(response => {
               setUsers(response.data);
@@ -35,7 +30,6 @@ const Photos = () => {
             })
             .catch(error => {
               console.log(error);
-              apiRequestEnd()
             });
         } else {
             getPhotos();
@@ -52,11 +46,9 @@ const Photos = () => {
       </Helmet>
       <div>
         {
-          loading
-          ? <Loading />
-          : photos.length > 0 
+          photos.length > 0 
             ? <PhotosList photos={photos} user={userName} />
-            : (<p>Data not found</p>)
+            : <Loading />
         }
       </div>
     </HelmetProvider>)

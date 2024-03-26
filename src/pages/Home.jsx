@@ -9,20 +9,16 @@ import Loading from '../ui/Loading'
 
 const Home = () => {
 
-    const { filteredUsers, setUsers, loading, apiRequestStart, apiRequestEnd, apiUsers, setApiUsers } = useContext(UserContext)
+    const { filteredUsers, setUsers, loading } = useContext(UserContext)
 
     useEffect(() => {
       const url = 'http://localhost:8000/users'
-      if (apiUsers !== url && filteredUsers.length === 0) {
-        apiRequestStart()
+      
         axios.get(url)
         .then(response => setUsers(response.data))
         .catch(error => {
           console.log(error);
-          apiRequestEnd();
         });
-        setApiUsers(url)
-      }
       // eslint-disable-next-line
     }, [])
 
