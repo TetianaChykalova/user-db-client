@@ -1,14 +1,9 @@
-import styles from './photos.module.css'
+import React from 'react';
+import styles from './photos.module.css';
 import ProgressiveImage from "react-progressive-graceful-image";
 
 const PhotoCard = ({photo}) => {
     return (<div className={styles.card}>
-        {/* <img 
-            alt={photo.title} 
-            src={photo.url} 
-            className={styles.image}
-            loading='lazy'
-        /> */}
         <ProgressiveImage
         src={photo.url}
         placeholder={photo.thumbnailUrl}

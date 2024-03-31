@@ -1,5 +1,6 @@
-import UserSingle from './UserSingle'
-import styles from './users.module.css'
+import React from 'react';
+import UserSingle from './UserSingle';
+import styles from './users.module.css';
 
 const UsersList = ({users}) => {
 

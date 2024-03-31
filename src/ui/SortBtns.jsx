@@ -1,5 +1,5 @@
 import { UserContext } from '../redux/context'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import styles from './ui.module.css'
 
 const SortBtns = () => {

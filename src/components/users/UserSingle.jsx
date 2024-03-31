@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom'
-import styles from './users.module.css'
-import { UilEnvelope } from '@iconscout/react-unicons'
-import { UilGlobe } from '@iconscout/react-unicons'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styles from './users.module.css';
+import { UilEnvelope } from '@iconscout/react-unicons';
+import { UilGlobe } from '@iconscout/react-unicons';
 
 const UserSingle = ({userData}) => {
     const {id, name, email, website} = userData

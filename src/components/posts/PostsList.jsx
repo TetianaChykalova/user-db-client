@@ -1,6 +1,6 @@
-import React from 'react'
-import PostSingle from './PostSingle'
-import styles from './posts.module.css'
+import React from 'react';
+import PostSingle from './PostSingle';
+import styles from './posts.module.css';
 
 const PostsList = ({posts, user}) => {
 

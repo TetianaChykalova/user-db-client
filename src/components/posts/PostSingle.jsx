@@ -1,4 +1,5 @@
-import styles from './posts.module.css'
+import React from 'react';
+import styles from './posts.module.css';
 
 const PostSingle = ({postData}) => {
     const { title, body } = postData

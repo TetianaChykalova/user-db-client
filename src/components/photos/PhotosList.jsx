@@ -1,5 +1,6 @@
-import styles from './photos.module.css'
-import PhotoCard from './PhotoCard'
+import React from 'react';
+import styles from './photos.module.css';
+import PhotoCard from './PhotoCard';
 
 const PhotosList = ({photos, user}) => {
 

@@ -1,7 +1,7 @@
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import PostsList from '../components/posts/PostsList'
 import { useParams } from 'react-router-dom'
-import { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { UserContext } from '../redux/context';
 import axios from 'axios';
 import Loading from '../ui/Loading';

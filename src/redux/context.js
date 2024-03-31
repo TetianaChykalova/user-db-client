@@ -1,6 +1,6 @@
-import { createContext, useReducer } from "react"
-import { reducer } from "./reducer"
-import * as types from './actionTypes'
+import React, { createContext, useReducer } from "react";
+import { reducer } from "./reducer";
+import * as types from './actionTypes';
 
 export const UserContext = createContext()
 const initialState = {
