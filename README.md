@@ -1,6 +1,8 @@
 # USER Database
 ## client side
 
+Educational project for learning SSR using the example of connecting React and Express in different repositories.
+
 ### Implementation
 
 The project is a user database. Data is received via the request API on the server side (Express.js) and displayed on the client side (React.js)
